@@ -44,7 +44,7 @@ CREATE TABLE `sequences` (
 
 LOCK TABLES `sequences` WRITE;
 /*!40000 ALTER TABLE `sequences` DISABLE KEYS */;
-INSERT INTO `sequences` VALUES (1,'TABLE_GEN_100',0),(2,'TABLE_GEN_10',0),(3,'TABLE_GEN_5',0),(4,'TABLE_GEN_1',7);
+INSERT INTO `sequences` VALUES (1,'TABLE_GEN_100',0),(2,'TABLE_GEN_10',0),(3,'TABLE_GEN_5',0),(4,'TABLE_GEN_1',8);
 /*!40000 ALTER TABLE `sequences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,6 +86,9 @@ CREATE TABLE `vpn_service` (
   `SERVICE_PROTOCOL` varchar(10) NOT NULL,
   `SERVICE_IP` varchar(30) NOT NULL,
   `SERVICE_PORT` int(8) NOT NULL,
+  `IS_ACTIVE` int(1) NOT NULL DEFAULT '0',
+  `UP_TIME` date DEFAULT NULL,
+  `DOWN_TIME` date DEFAULT NULL,
   PRIMARY KEY (`SERVICE_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -96,7 +99,7 @@ CREATE TABLE `vpn_service` (
 
 LOCK TABLES `vpn_service` WRITE;
 /*!40000 ALTER TABLE `vpn_service` DISABLE KEYS */;
-INSERT INTO `vpn_service` VALUES (1,'aws.faizalsidek.com','openvpn','54.251.156.96',1194);
+INSERT INTO `vpn_service` VALUES (1,'aws.faizalsidek.com','openvpn','54.251.156.96',1194,0,NULL,NULL);
 /*!40000 ALTER TABLE `vpn_service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +118,7 @@ CREATE TABLE `vpn_session` (
   `SESSION_DROP` date DEFAULT NULL,
   `IS_ACTIVE` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`SESSION_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +127,7 @@ CREATE TABLE `vpn_session` (
 
 LOCK TABLES `vpn_session` WRITE;
 /*!40000 ALTER TABLE `vpn_session` DISABLE KEYS */;
-INSERT INTO `vpn_session` VALUES (3,2,1,'2015-01-27','2015-01-27',0),(4,2,1,'2015-01-27',NULL,1),(5,1,1,'2015-01-27',NULL,1),(6,1,1,'2015-01-27',NULL,1);
+INSERT INTO `vpn_session` VALUES (3,2,1,'2015-01-27','2015-01-27',0),(4,2,1,'2015-01-27',NULL,1),(5,1,1,'2015-01-27','2015-01-27',0),(6,1,1,'2015-01-27','2015-01-27',0),(7,1,1,'2015-01-27',NULL,1);
 /*!40000 ALTER TABLE `vpn_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-27 18:57:32
+-- Dump completed on 2015-01-28  1:21:30

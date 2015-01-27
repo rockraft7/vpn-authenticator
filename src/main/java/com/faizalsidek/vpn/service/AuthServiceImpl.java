@@ -101,4 +101,31 @@ public class AuthServiceImpl implements AuthService {
 
         return 0;
     }
+
+    @Transactional
+    public Integer serviceUp(Integer serviceId) {
+        VpnService service = serviceRepository.findById(serviceId);
+        if (service == null)
+            return 1;
+
+        service.setActive(true);
+        service.setUpTime(new Date());
+        service.setDownTime(null);
+        serviceRepository.save(service);
+
+        return 0;
+    }
+
+    @Transactional
+    public Integer serviceStop(Integer serviceId) {
+        VpnService service = serviceRepository.findById(serviceId);
+        if (service == null)
+            return 1;
+
+        service.setActive(false);
+        service.setDownTime(new Date());
+        serviceRepository.save(service);
+
+        return 0;
+    }
 }

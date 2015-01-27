@@ -20,4 +20,14 @@ public interface AuthService {
     @Path("/session/invalidate")
     @Produces("text/plain")
     Integer invalidateSession(@QueryParam("username") String username, @QueryParam("serviceId") String serviceId);
+
+    @GET
+    @Path("/service/start")
+    @Produces("text/plain")
+    Integer serviceUp(@QueryParam("serviceId") Integer serviceId);
+
+    @GET
+    @Path("/service/stop")
+    @Produces("text/plain")
+    Integer serviceStop(@QueryParam("serviceId") Integer serviceId);
 }

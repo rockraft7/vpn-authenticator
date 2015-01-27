@@ -2,6 +2,7 @@ package com.faizalsidek.vpn.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,6 +30,15 @@ public class VpnService implements Serializable {
 
     @Column(name = "SERVICE_PORT")
     private Integer port;
+
+    @Column(name = "IS_ACTIVE")
+    private boolean active;
+
+    @Column(name = "UP_TIME")
+    private Date upTime;
+
+    @Column(name = "DOWN_TIME")
+    private Date downTime;
 
     public Integer getId() {
         return id;
@@ -68,6 +78,30 @@ public class VpnService implements Serializable {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date getUpTime() {
+        return upTime;
+    }
+
+    public void setUpTime(Date upTime) {
+        this.upTime = upTime;
+    }
+
+    public Date getDownTime() {
+        return downTime;
+    }
+
+    public void setDownTime(Date downTime) {
+        this.downTime = downTime;
     }
 
     @Override
