@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+    <table-generator name="TABLE_GEN_100" allocation-size="100" table="SEQUENCES"
+                     pk-column-name="SEQUENCE_NAME" value-column-name="SEQUENCE_VALUE" pk-column-value="TABLE_GEN_100"></table-generator>
+    <table-generator name="TABLE_GEN_10" allocation-size="10" table="SEQUENCES"
+                     pk-column-name="SEQUENCE_NAME" value-column-name="SEQUENCE_VALUE" pk-column-value="TABLE_GEN_10"></table-generator>
+    <table-generator name="TABLE_GEN_5" allocation-size="5" table="SEQUENCES"
+                     pk-column-name="SEQUENCE_NAME" value-column-name="SEQUENCE_VALUE" pk-column-value="TABLE_GEN_5"></table-generator>
+    <table-generator name="TABLE_GEN_1" allocation-size="1" table="SEQUENCES"
+                     pk-column-name="SEQUENCE_NAME" value-column-name="SEQUENCE_VALUE" pk-column-value="TABLE_GEN_1"></table-generator>
+</entity-mappings>
