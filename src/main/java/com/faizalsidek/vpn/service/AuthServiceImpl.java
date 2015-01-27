@@ -1,6 +1,7 @@
 package com.faizalsidek.vpn.service;
 
 import com.faizalsidek.vpn.entity.VpnAuth;
+import com.faizalsidek.vpn.entity.VpnService;
 import com.faizalsidek.vpn.entity.VpnSession;
 import com.faizalsidek.vpn.entity.VpnUser;
 import com.faizalsidek.vpn.repository.VpnAuthRepository;
@@ -41,17 +42,23 @@ public class AuthServiceImpl implements AuthService {
         password = StringEscapeUtils.escapeHtml3(password);
 
         VpnUser vpnUser = userRepository.findByUsernameAndDisabled(username, false);
-        if (vpnUser == null)
+        if (vpnUser == null) {
+            logger.debug("user not found.");
             return 1;
+        }
         List<VpnAuth> vpnAuths = authRepository.findByUser_Username(username);
+        logger.debug(vpnAuths.toString());
 
         if (password.equals(vpnUser.getPassword())) {
             for (VpnAuth auth : vpnAuths) {
-                if (auth.getId().equals(Integer.valueOf(serviceId)))
+                VpnService service = auth.getService();
+                if (service.getId().equals(Integer.valueOf(serviceId)))
                     return 0;
             }
+            logger.debug("No authorization found.");
         } else {
-            //TODO add login attempt
+            logger.debug("Password does not match. Given[" + password + "], Actual[" + vpnUser.getPassword() + "]");
+            //TODO log failed attempt
         }
 
         return 1;
