@@ -14,7 +14,7 @@ import java.util.List;
 public interface VpnSessionRepository extends Repository<VpnSession, Integer> {
     List<VpnSession> findByUser_UsernameAndActive(String username, boolean active);
 
-    VpnSession findByActiveAndService_IdAndUser_Username(boolean active, Integer serviceId, String username);
+    List<VpnSession> findByActiveAndService_IdAndUser_Username(boolean active, Integer serviceId, String username);
 
     List<VpnSession> findByActive(boolean active);
 }

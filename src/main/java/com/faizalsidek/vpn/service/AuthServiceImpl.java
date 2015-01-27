@@ -89,13 +89,15 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional
     public Integer invalidateSession(String username, String serviceId) {
-        VpnSession active = sessionRepository.findByActiveAndService_IdAndUser_Username(true, Integer.valueOf(serviceId), username);
-        if (active == null)
+        List<VpnSession> activeSessions = sessionRepository.findByActiveAndService_IdAndUser_Username(true, Integer.valueOf(serviceId), username);
+        if (activeSessions.size() == 0)
             return 1;
 
-        active.setActive(false);
-        active.setSessionDropTime(new Date());
-        sessionRepository.save(active);
+        for (VpnSession active : activeSessions) {
+            active.setActive(false);
+            active.setSessionDropTime(new Date());
+            sessionRepository.save(active);
+        }
 
         return 0;
     }
