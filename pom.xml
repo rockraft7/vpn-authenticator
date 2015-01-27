@@ -455,6 +455,7 @@
     </dependencies>
     -->
     <build>
+        <finalName>auth</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
